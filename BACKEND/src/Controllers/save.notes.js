@@ -3,12 +3,10 @@ export const saveNote = async (req, res) => {
     try{
         const username = req.body.username;
         const content = req.body.content;
-        const title = req.body.title;
         const edit = req.body.edit;
         console.log("Username:", username);
-        console.log("Title:", `"${title}"`, "Length:", title?.length);
         console.log("Content:", `"${content}"`);
-        if (!content || !username || !title) {
+        if (!content || !username) {
             return res.status(400).json({ message: "Username and content are required" });
         }
         const user = await User.findOne({ username: username.toLowerCase() });      
@@ -18,9 +16,9 @@ export const saveNote = async (req, res) => {
             });
         }
         if (edit){
-           user.notes = [{content, title }];
+           user.notes = [{content }];
         }else{
-            user.notes.push({content, title });
+            user.notes.push({content});
         }
         await user.save();
         res.status(201).json({

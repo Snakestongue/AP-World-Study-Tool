@@ -27,16 +27,14 @@
             <main id="notesMAIN">
                 <div id="overall">
                     <div class="lefts">
-                        <h3 class="notesHeading" id="titleHead">Title</h3>
-                        <div id="title" contenteditable="true">Note Title Here...</div>
                         
                         <h3 class="notesHeading">Content</h3>
-                        <div id="textbox" contenteditable="true">Start typing note...</div>
+                        <div id="textbox" class="boxes"contenteditable="true" >Start typing note...</div>
                     </div>
 
                     <div id="views">
                         <h3 class="notesHeading">View your notes</h3>
-                        <div id="view" class="noteCards">Click get to view notes...</div>
+                        <div id="view" class="boxes">Click get to view notes...</div>
                     </div>
                 </div>
                 <div id="buttons">
@@ -56,7 +54,6 @@
         </div>
         <script src="scripting.js"></script>
         <script>
-            let titles = document.getElementById("title")
             let textBOX = document.getElementById("textbox");
             let view = document.getElementById("view");
             let username = document.getElementById("usernameNotes");
@@ -97,8 +94,7 @@
             enhance.addEventListener("click", async function (){
                 
                 let content = textBOX.innerText;
-                let title = titles.innerText;
-                if (!content || !title || content == "Start typing note..." || title == "Note Title Here..."){
+                if (!content || content == "Start typing note..."){
                     alert("Please update text!");
                     return;
                 }
@@ -108,7 +104,6 @@
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                            title: title,
                             content: content
                         })
                     });
@@ -125,13 +120,12 @@
             });                
             saveButton.addEventListener("click", async function(){
                 let content = document.getElementById("textbox").innerText.trim();   
-                let title = document.getElementById("title").innerText.trim(); 
                 let usernameNotes = username.value; 
-                if (!content || !usernameNotes || !title) {
+                if (!content || !usernameNotes) {
                     alert("Please fill out the textbox!");
                     return;
                 }
-                if ( content=="Start typing note..." || title == "Note Title Here..."){
+                if ( content=="Start typing note..."){
                     alert("Please update text!")
                     return;
                 }
@@ -142,7 +136,6 @@
                         body: JSON.stringify({
                             username: usernameNotes,
                             content: content,
-                            title: title,
                             edit:edits
                         })
                     });
@@ -150,7 +143,6 @@
                     if (response.ok) {
                         alert("Notes posted");
                         textBOX.innerHTML = ""
-                        titles.innerHTML = ""
                     }else {
                         alert("Failed: " + wait.message);
                     }
@@ -169,7 +161,6 @@
                         view.innerHTML = ""; 
                         data.notes.forEach(note => {
                             view.innerHTML += `
-                                <h3>${note.title}</h3>
                                 <p>${note.content.replace(/\n/g, "<br>")}</p>
                             `;                            
                         });
@@ -194,7 +185,6 @@
                         textBOX.innerHTML = ""; 
                         data.notes.forEach(note => {
                             textBOX.innerHTML += `
-                                <h3>${note.title}</h3>
                                 <p>${note.content.replace(/\n/g, "<br>")}</p>
                             `;                            
                         });

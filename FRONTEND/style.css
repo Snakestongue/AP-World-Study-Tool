@@ -25,7 +25,7 @@ header{
 }
 main{
     grid-area: content;
-    background-color: rgb(150, 150, 150);
+    background-color: rgb(45, 45, 45);
     display: flex;       
     justify-content: center;   
     align-items: flex-start;
@@ -48,11 +48,11 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(180, 180, 180);
+    background-color: rgb(15, 15, 15);
     position: sticky;
     top:0;
     z-index: 2000;
-    box-shadow: 0 2px 30px rgba(46, 125, 50, .5);
+    box-shadow: 0 2px 30px rgba(0, 123, 255, .5);
 }
 #innerULNAV{
     z-index: 1000;
@@ -68,8 +68,8 @@ nav ul li, footer ul li{
 }
 nav ul li button, footer ul li button{
     background-color: transparent;
-    border: 1px solid #2E7D32; 
-    color: #121212;
+    border: 1px solid #007BFF; 
+    color: white;
     padding: 15px 30px;
     margin: 10px 0px;
     width: auto;
@@ -78,13 +78,13 @@ nav ul li button, footer ul li button{
     font-weight: 700;
 }
 nav ul li button:hover, footer ul li button:hover, .button:hover{
-    background-color: rgba(46, 125, 50, 0.1); 
-    border-color: #2E7D32; 
+    background-color: rgba(0, 123, 255, .1); 
+    border-color: #007BFF; 
     cursor: pointer;
 }
 #dropdownArrow{
     display: none; 
-    color: #2E7D32;
+    color: #007BFF;
     
 }
 #navIMG{
@@ -101,14 +101,14 @@ nav ul li button:hover, footer ul li button:hover, .button:hover{
 }
 #mainIndex, #sideIndex{
     flex: 1;
-    border: 1px solid rgba(46, 125, 50, 0.2);
+    border: 1px solid rgba(0, 123, 255, .5);
     border-radius: 10px;
     padding: 30px;
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(60, 60, 60);
     margin: 50px 2px;
     width: 45%;
-    color:#121212;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(46, 125, 50, 0.2);
+    color:white;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 123, 255, .5);
 }
 #mainIndex{
     position: relative; 
@@ -119,8 +119,8 @@ nav ul li button:hover, footer ul li button:hover, .button:hover{
     margin-top: 10px;
     font-weight: 600;
     background-color: transparent;
-    color: #121212;
-    border: 1px solid #2E7D32;
+    color: white;
+    border: 1px solid #007BFF;
     width: 200px;
     height: 50px;
     border-radius: 10px;
@@ -131,25 +131,25 @@ nav ul li button:hover, footer ul li button:hover, .button:hover{
     margin-bottom: 30px;
 }
 #GS:hover, #oLogin:hover{
-    font-size: 25px;
-    background-color: rgba(46, 125, 50, 0.1); 
-    border-color: #2E7D32;
+    background-color: rgba(0, 123, 255, .1); 
+    border-color: #007BFF;
     cursor: pointer;
 }
 #loginCard, #signUpCard{
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(60, 60, 60);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid #2E7D32;
+    border: 1px solid #007BFF;
     border-radius: 10px;
     width: 90%;
     max-width: 450px;
     padding: 40px;
     margin: 20px auto;
     height: auto;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(46, 125, 50, 0.2);-shadow: 0 4px 20px #2E7D32;
+    color:white;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 123, 255, .5);-shadow: 0 4px 20px #007BFF;
 }
 #faqMain, #ppMain{
     display: flex;
@@ -157,18 +157,18 @@ nav ul li button:hover, footer ul li button:hover, .button:hover{
     align-items: center;
 }
 #faqCard{
-    background-color: rgb(245, 245, 245);
-    border: 1px solid #2E7D32;
+    background-color: rgb(60, 60, 60);
+    border: 1px solid #007BFF;
     border-radius: 10px;
-    color: black;
+    color: white;
     max-width: 1000px;
     height:auto;
     padding: 20px;
 }
 #ppCard{
-    background-color: white;
-    border: 1px solid #2E7D32;
-    color:black;
+    background-color: black;
+    border: 1px solid #007BFF;
+    color:white;
     border-radius: 10px;
     max-width: 1000px;
     padding:25px;
@@ -176,15 +176,16 @@ nav ul li button:hover, footer ul li button:hover, .button:hover{
 }
 .logins, .logins:-webkit-autofill, .logins:-webkit-autofill:hover, .logins:-webkit-autofill:focus {
     background-color: #ffffff !important;
-    color: #121212 !important;
-    border: 2px solid #2E7D32; 
+    color: white !important;
+    border: .5px solid #007BFF; 
     filter: none; 
-    -webkit-text-fill-color: #121212 !important;
-    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+    -webkit-text-fill-color: white !important;
+    -webkit-box-shadow: 0 0 0px 1000px black inset !important;
     border-radius: 10px;
     padding: 10px;
     max-width: 600px;
     width: 75%;
+
 }
 
 .svg{
@@ -198,8 +199,8 @@ footer{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: rgb(180, 180, 180);
-    box-shadow: 0 2px 30px rgba(46, 125, 50, .5);
+    background-color: rgb(15, 15, 15);
+    box-shadow: 0 2px 30px rgba(0, 123, 255, .5);
 }
 
 
@@ -235,25 +236,20 @@ footer{
     gap: 15px;
 }
 
-#title, #textbox, #view{
+#textbox, #view{
     width: 100%;        
     max-width: 700px;
-    border: 1px solid #2E7D32;
-    box-shadow: 0 0 20px rgba(46, 125, 50, .2);
+    border: 1px solid #007BFF;
+    box-shadow: 0 0 20px rgba(0, 123, 255, .5);
     border-radius: 10px;
     transition: .5s;
     margin: 0px;
     box-sizing: border-box; 
     padding:10px;
-    color:black;
+    color:white;
     font-size: 17px;
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(60, 60, 60);
     overflow-y: auto;
-}
-#title{
-    height: 60px;           
-    flex-shrink: 0;   
-    overflow-y: auto; 
 }
 #textbox {
     height: 388px; 
@@ -274,11 +270,11 @@ footer{
 }
 .button{
     margin:10px;
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(60, 60, 60);
     width:200px;
     border: none;
     border-radius: 5px;
-    border-left: 3px solid #2E7D32;
+    border-left: 3px solid #007BFF;
     transition: .5s;
     padding: 10px;
     height: auto;
@@ -303,13 +299,19 @@ footer{
     cursor: pointer;
 }
 #ppLink, .opposite{
-    color: black;
+    color: white;
     text-decoration: underline;
     transition: .5s;
 }
 #ppLink:hover, .opposite:hover{
     opacity: .5;
 }
+
+
+
+
+
+
 
 
 
@@ -332,7 +334,7 @@ footer{
     header{
         display: flex;
         justify-content: center;
-        background-color: rgb(180, 180, 180); 
+        background-color: rgb(30, 30, 30); 
         padding: 10px 0;
         border-bottom: 1px solid rgba(0,0,0,0.1);
     }
@@ -392,7 +394,7 @@ footer{
     .button{
         height:30px;
     }
-    #title, #textbox, #view, .notesHeading {
+     #textbox, #view, .notesHeading {
         width: 100%;
         margin: 0px auto 0px auto;  
     }
