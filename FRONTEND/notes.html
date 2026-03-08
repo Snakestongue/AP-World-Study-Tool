@@ -1,12 +1,12 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
-        <title>Note Saver || Notes</title>
+        <title>AP World Study Guide</title>
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div id="parent">
+        <div id="notesParent">
             <header>
                     <img id="headerIMG" src="../image.png">
             </header>
@@ -27,7 +27,13 @@
             <main id="notesMAIN">
                 <div id="overall">
                     <div class="lefts">
-                        
+                        <select id="timePeriod">
+                            <option disabled selected value="Select a Time Period">Select a Time Period</option>
+                            <option value="1200-1450">Global Tapestry/Late Postclassical Era: 1200-1450 CE</option>
+                            <option value="1450-1750">Land-Based Empires and Transoceanic Empires/Early Modern Era: 1450-1750 CE</option>
+                            <option value="1750-1900">Revolutions and Consequences of Industrilization/The Long Nineteenth Century: 1750-1900 CE</option>
+                            <option value="1900-2005">Global Conflict, Cold War, Decolonization, Globilization: 1900-2005 CE</option>
+                        </select>
                         <h3 class="notesHeading">Content</h3>
                         <div id="textbox" class="boxes"contenteditable="true" >Start typing note...</div>
                     </div>
@@ -37,18 +43,19 @@
                         <div id="view" class="boxes">Click get to view notes...</div>
                     </div>
                 </div>
-                <div id="buttons">
-                    <input type="text" placeholder="username" class="button" id="usernameNotes" disabled>  
-                    <button class="button" id="saveButton">Save</button>
-                    <button class="button" id="getButton">Get</button>
-                    <button class="button" id="enhance">AI Enhance</button>
-                    <button class="button" id="edit">Edit</button>
-                </div>
             </main>
-           <footer>
+            <div id="sidebar">
+                <input type="text" placeholder="username" class="button" id="usernameNotes" disabled>  
+                <button class="button" id="saveButton">Save Notes</button>
+                <button class="button" id="getButton">Get Notes</button>
+                <button class="button" id="summerize">Summerize Notes</button>
+                <button class="button" id="flashcard">Create Flashcards for Quizlet</button>
+                <button class="button" id="MCQ">Create sample MCQ</button>
+            </div>
+            <footer>
                 <ul id="footerList">
                     <li><button id="github">Github</button></li>
-                    <li><button  id="footerDisable" disabled>&copy; 2026 Notes Saver by Snakestongue. All rights reserved. V1.5</button></li>
+                    <li><button  id="footerDisable" disabled>&copy; 2026 APWSG by Snakestongue. All rights reserved. V1</button></li>                </ul>
                 </ul>
             </footer>
         </div>
@@ -64,9 +71,10 @@
             let sup = document.getElementById("SUP")
             let login = document.getElementById("login");
             let q = document.getElementById("qa")
-            let enhance = document.getElementById("enhance")
-            let edit = document.getElementById("edit")
-
+            let summerize = document.getElementById("summerize")
+            let select = document.getElementById("timePeriod");
+            let flashcard = document.getElementById("flashcard")
+            let MCQ = document.getElementById("MCQ")
             let edits = false;
             login.addEventListener("click", function() {
                 window.location.href = "login.html";
@@ -91,20 +99,21 @@
                 }
             };
 
-            enhance.addEventListener("click", async function (){
-                
+            summerize.addEventListener("click", async function (){  
                 let content = textBOX.innerText;
-                if (!content || content == "Start typing note..."){
+                let selects = select.value;
+                if (!content || content == "Start typing note..." || select.value=="Select a Time Period"){
                     alert("Please update text!");
                     return;
                 }
-                alert("Enhancing your notes. Please wait.")
+                alert("Summerizing your notes. Please wait.")
                 try {
                     const response = await fetch("/api/v1/users/generate", {
                         method: "POST",
-                        headers: { "Content-Type": "application/json" },
+                        headers: {"Content-Type": "application/json" },
                         body: JSON.stringify({
-                            content: content
+                            content: content,
+                            select: selects
                         })
                     });
                     const data = await response.json();
@@ -117,11 +126,68 @@
                 } catch (error) {
                     alert("Internal server error");
                 }
-            });                
+            }); 
+
+            flashcard.addEventListener("click", async function (){  
+                let content = textBOX.innerText;
+                let selects = select.value;
+                if (!content || content == "Start typing note..." || select.value=="Select a Time Period"){
+                    alert("Please update text!");
+                    return;
+                }
+                alert("Creating flashcard. Please wait.")
+                try {
+                    const response = await fetch("/api/v1/users/flashcard", {
+                        method: "POST",
+                        headers: {"Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            content: content,
+                            select: selects
+                        })
+                    });
+                    const data = await response.json();
+                    if (response.ok) {
+                        textBOX.innerText = "Copy this content onto quizlet import. Customize it so each term/def is seperated by :: \n"+data.result; 
+                    } else {
+                        alert("Failed: " + data.message);
+                    }
+                }catch (error) {
+                    alert("Internal server error");
+                }
+            });      
+            
+            MCQ.addEventListener("click", async function (){  
+                let content = textBOX.innerText;
+                let selects = select.value;
+                if (!content || content == "Start typing note..." || select.value=="Select a Time Period"){
+                    alert("Please update text!");
+                    return;
+                }
+                alert("Creating MCQ's. Please wait.")
+                try {
+                    const response = await fetch("/api/v1/users/question", {
+                        method: "POST",
+                        headers: {"Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            content: content,
+                            select: selects
+                        })
+                    });
+                    const data = await response.json();
+                    if (response.ok) {
+                        textBOX.innerText = data.result; 
+                    } else {
+                        alert("Failed: " + data.message);
+                    }
+                }catch (error) {
+                    alert("Internal server error");
+                }
+            });  
+
             saveButton.addEventListener("click", async function(){
                 let content = document.getElementById("textbox").innerText.trim();   
                 let usernameNotes = username.value; 
-                if (!content || !usernameNotes) {
+                if (!content || !usernameNotes || select.value=="Select a Time Period") {
                     alert("Please fill out the textbox!");
                     return;
                 }
@@ -172,32 +238,6 @@
                     alert("Internal issue");
                 }
             });
-
-            edit.addEventListener("click", async function(){
-                edits = true;
-                let usernameNotes = username.value;
-                try{
-                    const response = await fetch(`/api/v1/users/notes?username=${usernameNotes}`, { 
-                        method: "GET"
-                    });
-                    const data = await response.json(); 
-                    if (response.ok){
-                        textBOX.innerHTML = ""; 
-                        data.notes.forEach(note => {
-                            textBOX.innerHTML += `
-                                <p>${note.content.replace(/\n/g, "<br>")}</p>
-                            `;                            
-                        });
-                         alert("Notes uploaded")
-                    }else {
-                        alert("Failed to retrieve notes: " + data.message);
-                    }
-                }catch (error) {
-                    alert("Internal issue");
-                }
-            });
-
-           
         </script>
     </body>
 </html>

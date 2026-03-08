@@ -19,6 +19,7 @@ body, div, #parent, main, nav ul, footer, footer ul{
         "content"
         "footer";
 }
+
 header{
     display: none;
     grid-area:header;
@@ -34,6 +35,7 @@ main{
     flex:1;
 }
 #notesMAIN{
+    grid-area: content;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -88,6 +90,7 @@ nav ul li button:hover, footer ul li button:hover, .button:hover{
     
 }
 #navIMG{
+    width:500px;
     display: inline;
 }
 
@@ -166,7 +169,7 @@ nav ul li button:hover, footer ul li button:hover, .button:hover{
     padding: 20px;
 }
 #ppCard{
-    background-color: black;
+    background-color: rgb(60, 60, 60);
     border: 1px solid #007BFF;
     color:white;
     border-radius: 10px;
@@ -175,7 +178,7 @@ nav ul li button:hover, footer ul li button:hover, .button:hover{
     height:auto;
 }
 .logins, .logins:-webkit-autofill, .logins:-webkit-autofill:hover, .logins:-webkit-autofill:focus {
-    background-color: #ffffff !important;
+    background-color: white !important;
     color: white !important;
     border: .5px solid #007BFF; 
     filter: none; 
@@ -278,10 +281,9 @@ footer{
     transition: .5s;
     padding: 10px;
     height: auto;
+    color:white;
 }
-.button:hover{
-    font-size: 20px;
-}
+
 #usernameNotes:hover{
     cursor: default;
 }
@@ -309,9 +311,45 @@ footer{
 
 
 
+#timePeriod{
+    background-color: rgb(60, 60, 60);
+    color:white;
+    border:1px solid #007BFF;
+    height:auto;
+    padding:15px 5px;
+    border-radius: 10px;
+    transition: .5s;
+}
 
+#timePeriod:hover, #timePeriod option:hover{
+    opacity: .5;
+    cursor: pointer;
+}
 
+/*SIDEBAR*/
 
+#notesParent{
+    flex: 1;
+    display: grid;
+    margin:0px;
+    min-height: 100vh;
+    padding:0px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 15% auto;
+    grid-template-areas: 
+        "nav nav"
+        "sidebar content"
+        "footer footer";
+}
+#sidebar{
+    grid-area:sidebar;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(15, 15, 15);
+    box-shadow: 0px 4px 20px #007BFF;
+}
 
 
 
@@ -324,12 +362,36 @@ footer{
     padding:0px;
     grid-template-rows: auto auto 1fr auto;
     grid-template-columns: auto;
-
     grid-template-areas: 
         "header"
         "nav"
         "content"
         "footer";
+    }
+    #notesParent{
+        flex: 1;
+        display: grid;
+        margin:0px;
+        min-height: 100vh;
+        padding:0px;
+        grid-template-rows: auto auto 1fr auto auto;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "header"
+            "nav"
+            "content"
+            "sidebar"
+            "footer";
+    } 
+    #sidebar{
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2 buttons per row */
+        gap: 10px;
+        padding: 15px;
+        box-shadow:none;
+        border-top:1px solid #007BFF;
+        border-bottom:1px solid #007BFF;
+        justify-items: center;
     }
     header{
         display: flex;
@@ -340,8 +402,9 @@ footer{
     }
     #headerIMG{
         padding:10px;
+        width:300px;
     }
-   #navIMG{
+    #navIMG{
         display: none;
     }
     nav ul, footer ul{
@@ -381,23 +444,34 @@ footer{
         padding: 20px;
     }
     #overall{
-        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 20px !important; 
+        gap: 20px;
     }
+
     #buttons{
         display: flex;
         flex-direction: column;
     }
     .button{
-        height:30px;
+        width: 100%;
+        height: 45px;
     }
-     #textbox, #view, .notesHeading {
+     #textbox, #view, .notesHeading, #timePeriod{
         width: 100%;
         margin: 0px auto 0px auto;  
     }
+    #timePeriod{
+        display: grid;
+        grid-template-rows: auto auto auto;
+        grid-template-columns: auto auto;
+    }
+    
+    footer{
+        padding: 10px 0px;
+    }
+    
 
 }
 
