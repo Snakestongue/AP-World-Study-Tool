@@ -61,6 +61,7 @@
         </div>
         <script src="scripting.js"></script>
         <script>
+            
             let textBOX = document.getElementById("textbox");
             let view = document.getElementById("view");
             let username = document.getElementById("usernameNotes");
@@ -75,7 +76,31 @@
             let select = document.getElementById("timePeriod");
             let flashcard = document.getElementById("flashcard")
             let MCQ = document.getElementById("MCQ")
+            let buttons = document.getElementsByClassName("button")
             let edits = false;
+           let animation;
+            function load(btn){
+                let red = true;
+                animation = setInterval(function(){
+                    if(red){
+                        btn.style.border = "3px solid #007BFF";
+                    }else{
+                        btn.style.border = "3px solid white"
+                    }
+                    red =!red;
+                },500);
+            }
+            function stopLoad(btn){
+                clearInterval(animation)
+                btn.style.border = ""
+                btn.style.borderLeft = "3px solid #007BFF";
+            }
+
+            for(let i= 0; i < buttons.length; i++){
+                buttons[i].addEventListener("click", function(){
+                    load(buttons[i]);
+                });
+            }
             login.addEventListener("click", function() {
                 window.location.href = "login.html";
             });
@@ -126,6 +151,7 @@
                 } catch (error) {
                     alert("Internal server error");
                 }
+                stopLoad(this)
             }); 
 
             flashcard.addEventListener("click", async function (){  
@@ -154,6 +180,7 @@
                 }catch (error) {
                     alert("Internal server error");
                 }
+                stopLoad(this)
             });      
             
             MCQ.addEventListener("click", async function (){  
@@ -182,6 +209,7 @@
                 }catch (error) {
                     alert("Internal server error");
                 }
+                stopLoad(this)
             });  
 
             saveButton.addEventListener("click", async function(){
@@ -215,6 +243,7 @@
                 }catch (error) {
                     alert("Internal issue");
                 }
+                stopLoad(this)
             });
             getButton.addEventListener("click", async function(){
                 let usernameNotes = username.value;
@@ -237,6 +266,7 @@
                 }catch (error) {
                     alert("Internal issue");
                 }
+                stopLoad(this)
             });
         </script>
     </body>
