@@ -1,7 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
-        <title>AP World Study Guide || Privacy Policy</title>
+        <title>AP World Study Tool || Privacy Policy</title>
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -10,16 +10,16 @@
             <header>
                     <img id="headerIMG" src="../image.png">
             </header>
-           <nav>
-                <a href="../index.html"><img id="navIMG" src="../image.png"></a>
+            <nav>
+                <p id="special">AP World Study Tool</p>
+                <!-- <a href="../index.html"><img id="navIMG" src="../image.png"></a> -->
                 <ul id="navList">
                     <li id="dropdownContainer">
-                        <span id="dropdownArrow">⬇⬇⬇</span>
                         <ul id="innerULNAV">
-                            <li><button class="dropdown" id="home">Home</button></li>
-                            <li><button class="dropdown" id="login">Login</button></li>
-                            <li><button class="dropdown" id="signUp">Sign Up</button></li>
-                            <li><button class="dropdown" id="faq">FAQ</button></li>
+                            <li><a class="dropdown" id="home" href="../index.html">Home</a></li>
+                            <li><a class="dropdown" id="login" href="login.html">Login</a></li>
+                            <li><a class="dropdown" id="signUp" href="signup.html">Sign Up</a></li>
+                            <li><a class="dropdown" id="faq" href="qAndA.html">FAQ</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -27,7 +27,7 @@
             <main id="ppMain">
                  <div id="ppCard">
                     <h2>
-                       Welcome to our AP World Study Guide! Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information.
+                       Welcome to our AP World Study Tool! Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information.
                     </h2>
                     <h3>
                         Information We Collect
@@ -55,36 +55,7 @@
                     
                  </div>
             </main>
-            <footer>
-                    <ul id="footerList">
-                        <li><button id="github">Github</button></li>
-                        <li><button  id="footerDisable" disabled>&copy; 2026 APWSG by Snakestongue. All rights reserved. V1</button></li>                </ul>
-                    </ul>
-            </footer>
         </div>
         <script src="scripting.js"></script>
-        <script>
-            let login = document.getElementById("login")
-            let signUp = document.getElementById("signUp");
-            let home = document.getElementById("home")
-            let faq = document.getElementById("faq")
-            let footerGithub = document.getElementById("github")
-
-            login.addEventListener("click", function() {
-                window.location.href = "login.html";
-            });
-            signUp.addEventListener("click", function() {
-                window.location.href = "signup.html";
-            });
-            home.addEventListener("click", function(){
-                window.location.href = "../index.html";
-            })
-            faq.addEventListener("click", function(){
-                window.location.href = "qAndA.html";
-            })
-            footerGithub.addEventListener("click", function(){
-                window.location.href = "https://github.com/Snakestongue"
-            })
-        </script>
     </body>
 </html>

@@ -1,7 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="FRONTEND/style.css">
-        <title>AP World Study Guide</title>
+        <title>AP World Study Tool</title>
         <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -11,99 +11,74 @@
                     <img id="headerIMG" src="image.png">
             </header>
             <nav>
-                <a href="../index.html"><img id="navIMG" src="../image.png"></a>
+                <p id="special">AP World Study Tool</p>
+                <!-- <a href="../index.html"><img id="navIMG" src="../image.png"></a> -->
                 <ul id="navList">
                     <li id="dropdownContainer">
-                        <span id="dropdownArrow">⬇⬇⬇</span>
                         <ul id="innerULNAV">
-                            <li><button class="dropdown" id="home">Home</button></li>
-                            <li><button class="dropdown" id="login">Login</button></li>
-                            <li><button class="dropdown" id="signUp">Sign Up</button></li>
-                            <li><button class="dropdown" id="faq">FAQ</button></li>
+                            <li><a class="dropdown" id="home" href="index.html">Home</a></li>
+                            <li><a class="dropdown" id="login" href="FRONTEND/login.html">Login</a></li>
+                            <li><a class="dropdown" id="signUp" href="FRONTEND/signup.html">Sign Up</a></li>
+                            <li><a class="dropdown" id="faq" href="FRONTEND/qAndA.html">FAQ</a></li>
                         </ul>
                     </li>
                 </ul>
             </nav>
-            <main>
-                <div id = "indexOver">
-                    <div id = "mainIndex">
-                        <h1 id="sideHead">Welcome to AP World Study Guide!</h1>
-                        <p id="sideContent">Use this AI tool to summerize notes, create flashcard and make practice MCQ with predesigned prompts for your needs! <br> </p>
-                        <button id="GS">Get Started</button>
-                        <br>
-                        </div>
-                    <div id = "sideIndex">
-                        <h2>Why use AP World Study Guide?</h2>
+           <main>
+                <div id="indexOver">
+                    <div id="mainIndex">
+                    <h1 id="sideHead">Welcome to AP World Study Tool!</h1>
+                    <p id="sideContent">
+                        Master AP World History with our AI-powered study assistant. <br>
+                         Summarize notes in seconds <br>
+                         Generate flashcards automatically <br>
+                         Practice multiple-choice questions like the real exam
+                    </p>
+                    <button id="GS">Get Started</button>
+                    </div>
+                    <div id="sideIndex">
+                        <h2>Why choose AP World Study Tool?</h2>
                         <div class="whyNS">
-                            
                             <div class="reasons">
-                                <svg class="svg size-6"xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <svg class="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>
-
-
-                                <h3>Generate MCQ</h3>
-                                <p>Generates AP World Style Multiple Choice Questions!</p>
+                                <h3>Generate MCQs</h3>
+                                <p>Create AP World-style multiple-choice questions instantly.</p>
                             </div>
-
                             <div class="reasons">
                                 <svg class="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m6.115 5.19.319 1.913A6 6 0 0 0 8.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 0 0 2.288-4.042 1.087 1.087 0 0 0-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 0 1-.98-.314l-.295-.295a1.125 1.125 0 0 1 0-1.591l.13-.132a1.125 1.125 0 0 1 1.3-.21l.603.302a.809.809 0 0 0 1.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 0 0 1.528-1.732l.146-.292M6.115 5.19A9 9 0 1 0 17.18 4.64M6.115 5.19A8.965 8.965 0 0 1 12 3c1.929 0 3.716.607 5.18 1.64" />
                                 </svg>
-
                                 <h3>Access Anywhere</h3>
-                                <p>Open your study guide from any device, anytime.</p>
+                                <p>Use the study tool on any device, anytime.</p>
                             </div>
-
                             <div class="reasons">
                                 <svg class="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25A2.25 2.25 0 0 1 5.25 3h13.5A2.25 2.25 0 0 1 21 5.25v9A2.25 2.25 0 0 1 18.75 16.5H5.25A2.25 2.25 0 0 1 3 14.25v-9Z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M8 21h8M10 16.5v4.5M14 16.5v4.5" />
                                 </svg>
-
-                                <h3>Pre-made prompts</h3>    
-                                <p>Has prompts that make your studying much easier.</p>     
+                                <h3>Pre-made Prompts</h3>
+                                <p>Built-in prompts make studying faster and easier.</p>
                             </div>
-
-                            
                         </div>
                     </div>
                 </div>
             </main>
-            <footer>
+            <!-- <footer>
                 <ul id="footerList">
-                    <li><button id="github">Github</button></li>
-                    <!-- <li><button>ColorSwitch</button></li> -->
-                    <li><button  id="footerDisable" disabled>&copy; 2026 APWSG by Snakestongue. All rights reserved. V1</button></li>
+                    <li><a id="github" href="https://github.com/Snakestongue">Github</a></li>
+                    <li id="footerDisable" disabled>&copy; 2026 APWSG by Snakestongue. All rights reserved. V1</li>
                 </ul>
-            </footer>
+            </footer> -->
         </div>
         <script src="FRONTEND/scripting.js"></script>
         <script>
             let GS = document.getElementById("GS")
-            let login = document.getElementById("login")
-            let signUp = document.getElementById("signUp");
-            let home = document.getElementById("home")
-            let faq = document.getElementById("faq")
-            let footerGithub = document.getElementById("github")
-            login.addEventListener("click", function() {
-                window.location.href = "FRONTEND/login.html";
-            });
-            signUp.addEventListener("click", function() {
-                window.location.href = "FRONTEND/signup.html";
-            });
+            let footerGithub = document.getElementById("github")           
             GS.addEventListener("click", function() {
                 window.location.href = "FRONTEND/signup.html";
             });
-            home.addEventListener("click", function(){
-                window.location.href = "index.html";
-            })
-            faq.addEventListener("click", function(){
-                window.location.href = "FRONTEND/qAndA.html";
-            })
-            footerGithub.addEventListener("click", function(){
-                window.location.href = "https://github.com/Snakestongue"
-            })
         </script>
     </body>
 </html>
