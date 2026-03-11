@@ -40,7 +40,7 @@
 
                     <div id="views">
                         <h3 class="notesHeading">View your notes</h3>
-                        <div id="view" class="boxes">Click get to view notes...</div>
+                        <div id="view" class="boxes">Click "Get Notes" to view notes...</div>
                     </div>
                 </div>
             </main>
@@ -67,45 +67,51 @@
             let MCQ = document.getElementById("MCQ")
             let buttons = document.getElementsByClassName("button")
             let edits = false;
-            let animation;
-            function load(btn){
-                let red = true;
-                animation = setInterval(function(){
-                    if(red){
-                        btn.style.border = "3px solid #007BFF";
-                    }else{
-                        btn.style.border = "3px solid black"
-                    }
-                    red =!red;
-                },500);
+
+            function startLoad(btn){
+                btn.disabled = true;
+                let spinner = document.createElement("span");
+                spinner.style.display = "inline-block";
+                spinner.style.width = "16px";
+                spinner.style.height = "16px";
+                spinner.style.marginLeft = "8px";
+                spinner.style.border = "3px solid #ccc";
+                spinner.style.borderTop = "3px solid #007BFF";
+                spinner.style.borderRadius = "50%";
+                btn.spinner = spinner;
+                btn.appendChild(spinner);
+                let angle = 0;
+                btn.spinnerInterval = setInterval(()=>{
+                    angle += 10;
+                    spinner.style.transform = `rotate(${angle}deg)`;
+                }, 100);
             }
             function stopLoad(btn){
-                clearInterval(animation)
-                btn.style.border = ""
-                btn.style.borderLeft = "3px solid #007BFF";
+                btn.disabled = false;
+                if (btn.spinnerInterval){
+                    clearInterval(btn.spinnerInterval);
+                    btn.spinnerInterval = null;
+                }
+                if (btn.spinner){
+                    btn.removeChild(btn.spinner);
+                    btn.spinner = null;
+                }
             }
-
-            for(let i= 0; i < buttons.length; i++){
-                buttons[i].addEventListener("click", function(){
-                    load(buttons[i]);
-                });
-            }
-
-            window.onload = function() {
+            window.onload = function(){
                 let savedName = localStorage.getItem("userName");
-                if (savedName) {
+                if (savedName){
                     document.getElementById("usernameNotes").value = savedName;
                 }
             };
-
             summerize.addEventListener("click", async function (){  
                 let content = textBOX.innerText;
                 let selects = select.value;
                 if (!content || content == "Start typing note..." || select.value=="Select a Time Period"){
                     alert("Please update text!");
+                    stopLoad(this)
                     return;
                 }
-                alert("Summerizing your notes. Please wait.")
+                startLoad(this)
                 try {
                     const response = await fetch("/api/v1/users/generate", {
                         method: "POST",
@@ -133,9 +139,10 @@
                 let selects = select.value;
                 if (!content || content == "Start typing note..." || select.value=="Select a Time Period"){
                     alert("Please update text!");
+                    stopLoad(this)
                     return;
                 }
-                alert("Creating flashcard. Please wait.")
+                startLoad(this)
                 try {
                     const response = await fetch("/api/v1/users/flashcard", {
                         method: "POST",
@@ -162,9 +169,10 @@
                 let selects = select.value;
                 if (!content || content == "Start typing note..." || select.value=="Select a Time Period"){
                     alert("Please update text!");
+                    stopLoad(this)
                     return;
                 }
-                alert("Creating MCQ's. Please wait.")
+                startLoad(this)
                 try {
                     const response = await fetch("/api/v1/users/question", {
                         method: "POST",
@@ -191,12 +199,15 @@
                 let usernameNotes = username.value; 
                 if (!content || !usernameNotes || select.value=="Select a Time Period") {
                     alert("Please fill out the textbox!");
+                    stopLoad(this)
                     return;
                 }
                 if ( content=="Start typing note..."){
                     alert("Please update text!")
+                    stopLoad(this)
                     return;
                 }
+                startLoad(this)
                 try {
                     const response = await fetch("/api/v1/users/notes", {
                         method: "POST",
@@ -210,7 +221,7 @@
                     const wait = await response.json();
                     if (response.ok) {
                         alert("Notes posted");
-                        textBOX.innerHTML = ""
+                        textBOX.innerHTML = "Start typing note..."
                     }else {
                         alert("Failed: " + wait.message);
                     }
@@ -221,6 +232,7 @@
             });
             getButton.addEventListener("click", async function(){
                 let usernameNotes = username.value;
+                startLoad(this)
                 try{
                     const response = await fetch(`/api/v1/users/notes?username=${usernameNotes}`, { 
                         method: "GET"

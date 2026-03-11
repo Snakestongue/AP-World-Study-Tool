@@ -380,7 +380,7 @@ nav ul li a:hover{
         justify-content: center;
         background-color:#ffffff;
         padding: 10px 0;
-        border-bottom:1px solid rgba(60, 60, 60, 0.229);
+        border-bottom:1px solid rgba(60, 60, 60, .5);
     }
     #headerSpecial{
         display:inline;
