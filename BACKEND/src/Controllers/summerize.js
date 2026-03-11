@@ -17,7 +17,12 @@ export const summerizeNotes =async(req, res)=>{
                     model:modelId,
                     messages: [
                         {role: "system", content: "You are an AP World History Teacher and exam grader." },
-                        {role: "user", content: `In the ${select} time period summerize the following AP World History notes into a clear, concise format. Highlight clearly, key events, dates, peoples & concepts. Focus on major empires, people, themes and cause-effect relationships. If the notes and time period do not match only respond with "Notes and Time Period are not matching". If the student types in a non-existing event say "N/A". Make sure the notes are of quality for a 5 on the AP Exam. Here are the notes ${content}` }
+                        {role: "user", content: `In the ${select} time period summerize the following AP World History notes into a clear, concise format. 
+                        Highlight clearly, key events, dates, peoples & concepts. 
+                        Focus on major empires, people, themes and cause-effect relationships highlighted in the AP World History Curriculum.
+                         If the notes and time period do not match only respond with "Notes and Time Period are not matching". 
+                         If the student types in a non-existing event say "N/A". 
+                         Make sure the notes are of quality for a 5 on the AP Exam. Here are the notes ${content}` }
                     ]
                 },{
                     headers: {

@@ -1,3 +1,4 @@
+/*ADD LOADING TO LOGIN/SIGNUP*/
 *{
     box-sizing: border-box;
     margin: 0px;
@@ -36,12 +37,18 @@ main{
     justify-content: flex-end;
     align-items: center;
 }
+#freeNotesMain{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 img{
     width:200px;
     margin-left: 10px;
 }
 nav{
-    background-color: #ffffff; /* Solid white bar */
+    background-color: #ffffff;
     border-bottom: 1px solid #E2E8F0;
     padding: 5px 5%;
     position: sticky;
@@ -52,7 +59,7 @@ nav{
     align-items: center;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     grid-area: nav;
-    grid-column: 1 / -1; /* This forces the nav to span from column 1 to the very end */
+    grid-column: 1 / -1; /*AI did this line*/
     width: 100%;
 }
 #innerULNAV, #navList{
@@ -113,7 +120,7 @@ nav ul li a:hover{
     align-items: center;
     gap:15px;
 }
-#textbox, #view{
+#textbox, #view, #textboxs{
     width: 100%;        
     max-width: 700px;
     border-radius: 10px;
@@ -126,6 +133,12 @@ nav ul li a:hover{
     border:1px solid #f1f5f9;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
     border-radius: 20px;
+}
+#textboxs{
+    width:100%;
+    max-width:2000px;
+    height:100%;
+    max-height:2000px;
 }
 .faqItem{
     background-color: transparent;
@@ -184,6 +197,7 @@ nav ul li a:hover{
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .reasons:hover{
+    cursor: pointer;
     transform: translateY(-5px);
     box-shadow: 0 12px 20px rgba(0,0,0,0.05);
 }
@@ -256,6 +270,10 @@ nav ul li a:hover{
 
 #textbox {
     height: 388px; 
+    overflow-y: auto;
+}
+#textboxs{
+    height:450px;
     overflow-y: auto;
 }
 #view{

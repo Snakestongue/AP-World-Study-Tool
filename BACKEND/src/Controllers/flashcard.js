@@ -10,7 +10,7 @@ export const flashcardGenerator =async(req, res)=>{
         "meta-llama/Llama-3.2-1B-Instruct",
         "mistralai/Mistral-7B-Instruct-v0.3"
     ]; //ai found the models :)
-    for (let modelId of models) {
+    for (let modelId of models){
         try{
             let response = await axios.post(
                 "https://router.huggingface.co/v1/chat/completions",{ 

@@ -56,7 +56,36 @@
                     document.getElementById("oLogin").click();
                 }
             });
-            
+            function startLoad(btn){
+                btn.disabled = true;
+                let spinner = document.createElement("span");
+                spinner.style.display = "inline-block";
+                spinner.style.width = "16px";
+                spinner.style.height = "16px";
+                spinner.style.marginLeft = "8px";
+                spinner.style.border = "3px solid #ccc";
+                spinner.style.borderTop = "3px solid #007BFF";
+                spinner.style.borderRadius = "50%";
+                btn.spinner = spinner;
+                btn.appendChild(spinner);
+                let angle = 0;
+                btn.spinnerInterval = setInterval(()=>{
+                    angle += 10;
+                    spinner.style.transform = `rotate(${angle}deg)`;
+                }, 100);
+            }
+            function stopLoad(btn){
+                btn.disabled = false;
+                if (btn.spinnerInterval){
+                    clearInterval(btn.spinnerInterval);
+                    btn.spinnerInterval = null;
+                }
+                if (btn.spinner){
+                    btn.removeChild(btn.spinner);
+                    btn.spinner = null;
+                }
+            }
+
             oLogBut.addEventListener("click", async function() {
                 let username = document.getElementById("userName").value;
                 let password = document.getElementById("passWord").value;
@@ -74,6 +103,7 @@
                     alert("Password must be 6 characters long")
                     return;
                 }
+                startLoad(this)
                 try{
                     const response = await fetch("/api/v1/users/register", {
                         method: "POST",
@@ -99,6 +129,7 @@
                 }catch (error) {
                     alert(wait.message);
                 }
+                stopLoad(this)
             });
 
         </script>

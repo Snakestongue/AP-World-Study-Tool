@@ -24,7 +24,7 @@
                     </li>
                 </ul>
             </nav>
-            <main id="notesMAIN">
+            <main id="freeNotesMain">
                 <div id="overall">
                     <div class="lefts">
                         <select id="timePeriod">
@@ -35,19 +35,13 @@
                             <option value="1900-2005">Global Conflict, Cold War, Decolonization, Globilization: 1900-2005 CE</option>
                         </select>
                         <h3 class="notesHeading">Content</h3>
-                        <div id="textbox" class="boxes"contenteditable="true" >Start typing note...</div>
+                        <div id="textboxs" class="boxes"contenteditable="true" >Sign up to save notes...</div>
                     </div>
 
-                    <div id="views">
-                        <h3 class="notesHeading">View your notes</h3>
-                        <div id="view" class="boxes">Click "Get Notes" to view notes...</div>
-                    </div>
                 </div>
             </main>
             <div id="sidebar">
-                <input type="text" placeholder="username" class="button" id="usernameNotes" disabled>  
-                <button class="button" id="saveButton">Save Notes</button>
-                <button class="button" id="getButton">Get Notes</button>
+                <button class="button" id="signUpSideBar">Sign up to save notes</button>
                 <button class="button" id="summerize">Summarize  Notes</button>
                 <button class="button" id="flashcard">Create Flashcards for Quizlet</button>
                 <button class="button" id="MCQ">Create sample MCQ</button>
@@ -56,16 +50,15 @@
         <script src="scripting.js"></script>
         <script>
             
-            let textBOX = document.getElementById("textbox");
+            let textBOX = document.getElementById("textboxs");
             let view = document.getElementById("view");
             let username = document.getElementById("usernameNotes");
-            let saveButton = document.getElementById("saveButton")
-            let getButton = document.getElementById("getButton")
             let summerize = document.getElementById("summerize")
             let select = document.getElementById("timePeriod");
             let flashcard = document.getElementById("flashcard")
             let MCQ = document.getElementById("MCQ")
             let buttons = document.getElementsByClassName("button")
+            let signUpSideBar = document.getElementById("signUpSideBar")
             let edits = false;
 
             function startLoad(btn){
@@ -103,6 +96,9 @@
                     document.getElementById("usernameNotes").value = savedName;
                 }
             };
+            signUpSideBar.addEventListener("click", function(){
+                window.location.href="signup.html"
+            })
             summerize.addEventListener("click", async function (){  
                 let content = textBOX.innerText;
                 let selects = select.value;
@@ -122,7 +118,7 @@
                         })
                     });
                     const data = await response.json();
-                    if (response.ok) {
+                    if (response.ok){
                         textBOX.innerText = data.result; 
                     } else {
                         alert("Failed: " + data.message);
@@ -194,66 +190,8 @@
                 stopLoad(this)
             });  
 
-            saveButton.addEventListener("click", async function(){
-                let content = document.getElementById("textbox").innerText.trim();   
-                let usernameNotes = username.value; 
-                if (!content || !usernameNotes || select.value=="Select a Time Period") {
-                    alert("Please fill out the textbox!");
-                    stopLoad(this)
-                    return;
-                }
-                if ( content=="Start typing note..."){
-                    alert("Please update text!")
-                    stopLoad(this)
-                    return;
-                }
-                startLoad(this)
-                try {
-                    const response = await fetch("/api/v1/users/notes", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            username: usernameNotes,
-                            content: content,
-                            edit:edits
-                        })
-                    });
-                    const wait = await response.json();
-                    if (response.ok) {
-                        alert("Notes posted");
-                        textBOX.innerHTML = "Start typing note..."
-                    }else {
-                        alert("Failed: " + wait.message);
-                    }
-                }catch (error) {
-                    alert("Internal issue");
-                }
-                stopLoad(this)
-            });
-            getButton.addEventListener("click", async function(){
-                let usernameNotes = username.value;
-                startLoad(this)
-                try{
-                    const response = await fetch(`/api/v1/users/notes?username=${usernameNotes}`, { 
-                        method: "GET"
-                    });
-                    const data = await response.json(); 
-                    if (response.ok){
-                        view.innerHTML = ""; 
-                        data.notes.forEach(note => {
-                            view.innerHTML += `
-                                <p>${note.content.replace(/\n/g, "<br>")}</p>
-                            `;                            
-                        });
-                         alert("Notes uploaded")
-                    }else {
-                        alert("Failed to retrieve notes: " + data.message);
-                    }
-                }catch (error) {
-                    alert("Internal issue");
-                }
-                stopLoad(this)
-            });
+            
+                
         </script>
     </body>
 </html>

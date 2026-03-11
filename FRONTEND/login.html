@@ -40,13 +40,37 @@
         </div>
         <script src="scripting.js"></script>
         <script>
-            let login = document.getElementById("login")
-            let signUp = document.getElementById("signUp");
-            let home = document.getElementById("home")
-            let faq = document.getElementById("faq")
-            let footerGithub = document.getElementById("github")
             let oLogBut = document.getElementById("oLogin")
-            
+
+            function startLoad(btn){
+                btn.disabled = true;
+                let spinner = document.createElement("span");
+                spinner.style.display = "inline-block";
+                spinner.style.width = "16px";
+                spinner.style.height = "16px";
+                spinner.style.marginLeft = "8px";
+                spinner.style.border = "3px solid #ccc";
+                spinner.style.borderTop = "3px solid #007BFF";
+                spinner.style.borderRadius = "50%";
+                btn.spinner = spinner;
+                btn.appendChild(spinner);
+                let angle = 0;
+                btn.spinnerInterval = setInterval(()=>{
+                    angle += 10;
+                    spinner.style.transform = `rotate(${angle}deg)`;
+                }, 100);
+            }
+            function stopLoad(btn){
+                btn.disabled = false;
+                if (btn.spinnerInterval){
+                    clearInterval(btn.spinnerInterval);
+                    btn.spinnerInterval = null;
+                }
+                if (btn.spinner){
+                    btn.removeChild(btn.spinner);
+                    btn.spinner = null;
+                }
+            }
             document.addEventListener("keypress", function(event) {
                 if (event.key == "Enter") {
                     document.getElementById("oLogin").click();
@@ -60,6 +84,7 @@
                     alert("Please fill out all fields!");
                     return;
                 }
+                startLoad(this)
                 try{
                     const response = await fetch("/api/v1/users/login", { 
                         method: "POST",
@@ -79,7 +104,9 @@
                 } catch (error) {
                     alert("Internal Server Error");
                 }
+                stopLoad(this)
             });
+            
             
         </script>
     </body>

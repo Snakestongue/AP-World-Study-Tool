@@ -77,8 +77,14 @@
             let GS = document.getElementById("GS")
             let footerGithub = document.getElementById("github")           
             GS.addEventListener("click", function() {
-                window.location.href = "FRONTEND/signup.html";
+                window.location.href = "FRONTEND/FreeNotes.html";
             });
+            let reasons = document.getElementsByClassName("reasons");
+            for (let i=0; i<reasons.length; i++){
+                reasons[i].addEventListener("click", function(){
+                    window.location.href = "FRONTEND/FreeNotes.html"
+                })
+            }
         </script>
     </body>
 </html>
