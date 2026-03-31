@@ -14,13 +14,13 @@
 
 import express from "express";
 import path from "path";
-import { fileURLToPath } from "url";
+import {fileURLToPath} from "url";
 import userRouter from "./Routes/user.route.js";
 
 const app = express();
 
 app.use(express.json());
-app.use("/api/v1/users", userRouter);
+app.use("/APWST", userRouter);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

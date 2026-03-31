@@ -11,7 +11,7 @@
                 <p class="special" id="headerSpecial">AP World Study Tool</p>
             </header>
             <nav>
-                <p class="special" id="navSpecial">AP World Study Tool</p>
+                <a class="special" id="navSpecial" href="index.html">AP World Study Tool</a>
                 <!-- <a href="../index.html"><img id="navIMG" src="../image.png"></a> -->
                 <ul id="navList">
                     <li id="dropdownContainer">
@@ -44,7 +44,8 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>
                                 <h3>Generate MCQs</h3>
-                                <p>Create AP World-style multiple-choice questions instantly.</p>
+                                <p>Create AP World-style multiple-choice questions instantly.*</p>
+                                <p id="disclaimerIndex">*Log in required</p>
                             </div>
                             <div class="reasons">
                                 <svg class="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -65,12 +66,12 @@
                     </div>
                 </div>
             </main>
-            <!-- <footer>
+            <footer>
                 <ul id="footerList">
                     <li><a id="github" href="https://github.com/Snakestongue">Github</a></li>
-                    <li id="footerDisable" disabled>&copy; 2026 APWSG by Snakestongue. All rights reserved. V1</li>
+                    <li id="footerDisable" disabled>&copy; 2026 APWST by Maeher. All rights reserved. V2</li>
                 </ul>
-            </footer> -->
+            </footer>
         </div>
         <script src="FRONTEND/scripting.js"></script>
         <script>
@@ -79,12 +80,12 @@
             GS.addEventListener("click", function() {
                 window.location.href = "FRONTEND/FreeNotes.html";
             });
-            let reasons = document.getElementsByClassName("reasons");
-            for (let i=0; i<reasons.length; i++){
-                reasons[i].addEventListener("click", function(){
-                    window.location.href = "FRONTEND/FreeNotes.html"
-                })
-            }
+            // let reasons = document.getElementsByClassName("reasons");
+            // for (let i=0; i<reasons.length; i++){
+            //     reasons[i].addEventListener("click", function(){
+            //         window.location.href = "FRONTEND/FreeNotes.html"
+            //     })
+            // }
         </script>
     </body>
 </html>

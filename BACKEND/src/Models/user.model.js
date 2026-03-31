@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose"; //schema means structure
+import mongoose, {Schema } from "mongoose"; //schema means structure
 import validator from "validator"
 const userSchema = new Schema({
     username:{
@@ -10,7 +10,6 @@ const userSchema = new Schema({
         minLength: 1,
         maxLength: 30
     },
-
     password: {
         type: String,
         required: true,
@@ -18,7 +17,6 @@ const userSchema = new Schema({
         //maxLength: 50,
         select: false
     },
-
     email:{
         type:String,
         required: true,
@@ -27,7 +25,7 @@ const userSchema = new Schema({
         trim: true, //used for white spaces
         validate: {
         validator: validator.isEmail,
-        message: props => `${props.value} is not a valid email!`
+        message: props =>`${props.value} is not a valid email!`
         }
     },
     notes: [{
@@ -37,11 +35,9 @@ const userSchema = new Schema({
             minlength: 1 
         },
         createdAt: { 
-            type: Date, 
-            default: Date.now 
+            date:{type: Date, default: Date.now} //documentation
         }
     }]
-
 },
     {
         timestamps: true
@@ -49,4 +45,10 @@ const userSchema = new Schema({
 ); //code version of strucutre of data
 
 export const User = mongoose.model("User", userSchema);
+
+// const newUSchema = new Schema({
+//     newDevice:{
+//         //tbd
+//     }
+// })
 

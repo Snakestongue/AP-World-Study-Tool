@@ -1,19 +1,23 @@
-import axios from "axios";
+import OpenAI from "openai";
 export const questionGenerator =async(req, res)=>{
     const {content, select} = req.body;
-    if (!content||!select){ 
-        return res.status(400).json({message: "Fill out all fields" });
-    }
+    const githubAI = new OpenAI({
+        apiKey: process.env.GITHUB_TOKEN, 
+        baseURL:"https://models.inference.ai.azure.com" 
+    })
     console.log(select)
-    const models = [
-        "Qwen/Qwen2.5-7B-Instruct",
-        "meta-llama/Llama-3.2-1B-Instruct",
-        "mistralai/Mistral-7B-Instruct-v0.3"
-    ]; //ai found the models :)
+    const models=[
+        // "Qwen/Qwen2.5-7B-Instruct",
+        // "meta-llama/Llama-3.2-1B-Instruct",
+        // "mistralai/Mistral-7B-Instruct-v0.3"
+        // "groq/compound"
+        "Llama-3.3-70B-Instruct",
+        "gpt-4o",
+        "Mistral-large-2411"
+    ];
     for (let modelId of models) {
         try{
-            let response = await axios.post(
-                "https://router.huggingface.co/v1/chat/completions",{ 
+            const response = await githubAI.chat.completions.create({
                     model:modelId,
                     messages: [
                         {role: "system", content: "You are an expert AP World History Teacher and exam writer. You generate questions that resemble official AP World History exam questions." },
@@ -39,17 +43,12 @@ export const questionGenerator =async(req, res)=>{
                         After all questions, write the: Answer Key and Explanations using this format
                         In the Answer Key and Explanations section, DO NOT repeat the answer choices. 
                         Only list the correct letter and a short explanation.
-                
                         `}
                     ],
-                    //  max_tokens:1000
-                },{
-                    headers: {
-                        Authorization: `Bearer ${process.env.token}`,
-                        "Content-Type": "application/json"
-                }},
+                    max_tokens:1000
+                }
             );
-            return res.json({result:response.data.choices[0].message.content});
+            return res.json( {result:response.choices[0].message.content});
         }catch (error){
             console.log(`Model ${modelId} failutres:`, error.message);
         }

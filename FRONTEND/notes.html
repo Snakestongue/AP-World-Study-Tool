@@ -11,7 +11,7 @@
                 <p class="special" id="headerSpecial">AP World Study Tool</p>
             </header>
             <nav>
-                <p class="special" id="navSpecial">AP World Study Tool</p>
+                <a class="special" id="navSpecial" href="../index.html">AP World Study Tool</a>
                 <!-- <a href="../index.html"><img id="navIMG" src="../image.png"></a> -->
                 <ul id="navList">
                     <li id="dropdownContainer">
@@ -26,14 +26,15 @@
             </nav>
             <main id="notesMAIN">
                 <div id="overall">
-                    <div class="lefts">
-                        <select id="timePeriod">
-                            <option disabled selected value="Select a Time Period">Select a Time Period</option>
-                            <option value="1200-1450">Global Tapestry/Late Postclassical Era: 1200-1450 CE</option>
-                            <option value="1450-1750">Land-Based Empires and Transoceanic Empires/Early Modern Era: 1450-1750 CE</option>
-                            <option value="1750-1900">Revolutions and Consequences of Industrilization/The Long Nineteenth Century: 1750-1900 CE</option>
-                            <option value="1900-2005">Global Conflict, Cold War, Decolonization, Globilization: 1900-2005 CE</option>
-                        </select>
+                    <div class="rights">
+                        <div id="timePeriod"> <p id="first"disabled selected value="Select a Time Period">Select a Time Period ▾</p>
+                            <ul id="optionUL">
+                                <li class="options" value="1200-1450" id="1200">Global Tapestry/Late Postclassical Era: 1200-1450 CE</li>
+                                <li  class="options"value="1450-1750" id="1450">Land-Based Empires and Transoceanic Empires/Early Modern Era: 1450-1750 CE</li>
+                                <li  class="options" value="1750-1900" id="1750">Revolutions and Consequences of Industrilization/The Long Nineteenth Century: 1750-1900 CE</li>
+                                <li  class="options" value="1900-2005" id="1900">Global Conflict, Cold War, Decolonization, Globilization: 1900-2005 CE</li>
+                            </ul>
+                        </div>
                         <h3 class="notesHeading">Content</h3>
                         <div id="textbox" class="boxes"contenteditable="true" >Start typing note...</div>
                         <p id="disclaimer">This service uses AI and may make mistakes. Please verify information.</p>
@@ -53,7 +54,15 @@
                 <button class="button" id="flashcard">Create Flashcards for Quizlet</button>
                 <button class="button" id="MCQ">Create sample MCQ</button>
             </div>
+            
         </div>
+        <footer>
+                <ul id="footerList">
+                    <li><a id="github" href="https://github.com/Snakestongue">Github</a></li>
+                    <li id="footerDisable" disabled>&copy; 2026 APWST by Maeher. All rights reserved. V2</li>
+                </ul>
+            </footer>
+        
         <script src="scripting.js"></script>
         <script>
             
@@ -69,6 +78,56 @@
             let buttons = document.getElementsByClassName("button")
             let edits = false;
 
+            let current = false;
+            let timePeriod = document.getElementById("timePeriod")
+            let a = document.getElementById("1200")
+            let b = document.getElementById("1450")
+            let c = document.getElementById("1750")
+            let d = document.getElementById("1900")
+            let first = document.getElementById("first")
+            let options = document.getElementsByClassName("options")
+            let optionUL = document.getElementById("optionUL")
+
+            a.addEventListener("click", function(){
+                first.innerText = a.innerText;
+                console.log("Clc")
+            })
+            b.addEventListener("click", function(){
+                first.innerText = b.innerText
+                console.log("Clc")
+            })
+            c.addEventListener("click", function(){
+                first.innerText = c.innerText
+                console.log("Clc")
+            })
+            d.addEventListener("click", function(){
+                first.innerText = d.innerText
+                console.log("Clc")
+            })
+            timePeriod.addEventListener("click", function(){
+                current = !current;
+                if (current){
+                    for (let i = 0; i<options.length;i++){
+                        options[i].style.display = "block"
+                        console.log(current)
+                    }
+                    optionUL.style.display = "block"
+                }else{
+                    for (let i = 0; i<options.length;i++){
+                        options[i].style.display = "none"
+                        console.log(current)
+                    }
+                    optionUL.style.display = "none"
+                }
+            })
+            if (current){
+                document.addEventListener("click", function () {
+                    for (let i = 0; i < options.length; i++) {
+                        options[i].style.display = "none";
+                    }
+                    optionUL.style.display = "none";
+            });
+            }
             function startLoad(btn){
                 btn.disabled = true;
                 let spinner = document.createElement("span");
@@ -104,17 +163,96 @@
                     document.getElementById("usernameNotes").value = savedName;
                 }
             };
+
+
+            function animateHighlight(element) {
+                let frame = 0;
+                const totalFrames = 50; 
+
+                function step() {
+                    frame++;
+                    const progress = frame / totalFrames;
+                    const intensity = Math.pow(1 - progress, 0.5); 
+
+                    // SHADOWY SETTINGS:
+                    // spread = 0 (prevents the 'bold/thick' border look)
+                    // blur = 8px (creates the soft, feathered shadow effect)
+                    const blur = 8 * intensity; 
+                    const alpha = intensity;
+
+                    // Apply a soft, glowing red shadow
+                    element.style.boxShadow = `0 0 ${blur}px 0px rgba(255, 77, 77, ${alpha})`;
+                    
+                    // Soften the border color slightly so it blends with the shadow
+                    // but keep it thin (the 1px is defined in your CSS)
+                    element.style.borderColor = `rgba(255, 77, 77, ${alpha})`;
+
+                    if (frame < totalFrames) {
+                        requestAnimationFrame(step);
+                    } else {
+                        // Reset to original CSS
+                        element.style.boxShadow = "none";
+                        element.style.borderColor = "black";
+                    }
+                }
+
+                requestAnimationFrame(step);
+            }
+  
+ 
+            function boxHighlight(element) {
+                let frame = 0;
+                const totalFrames = 50; 
+
+                function step() {
+                    frame++;
+                    const progress = frame / totalFrames;
+                    
+                    // This math keeps alpha at 1.0 for the start, then fades.
+                    // It prevents that "pale" look.
+                    let alpha = 1;
+                    if (progress > 0.2) {
+                        alpha = 1 - ((progress - 0.2) / 0.8);
+                    }
+                    
+                    // POP LOGIC: Starts at 2px, hits 12px, then fades
+                    const spread = (2 + (12 * progress)) * alpha; 
+                    const blur = 4 * progress; 
+
+                    // Apply Solid Red: rgba(255, 0, 0, alpha) is more vivid than (255, 77, 77)
+                    const redColor = `rgba(255, 0, 0, ${alpha})`;
+                    
+                    element.style.boxShadow = `0 0 ${blur}px ${spread}px ${redColor}`;
+                    element.style.borderColor = redColor;
+
+                    if (frame < totalFrames) {
+                        requestAnimationFrame(step);
+                    } else {
+                        // Reset to original CSS
+                        element.style.boxShadow = "0 10px 25px -5px rgba(0, 0, 0, 0.05)";
+                        element.style.borderColor = "#f1f5f9";
+                    }
+                }
+                requestAnimationFrame(step);
+            }
+                         
             summerize.addEventListener("click", async function (){  
                 let content = textBOX.innerText;
-                let selects = select.value;
-                if (!content || content == "Start typing note..." || select.value=="Select a Time Period"){
-                    alert("Please update text!");
+                let selects = first.innerText;
+                if (!content || content == "Start typing note..."){
+                    boxHighlight(textBOX)
+                    stopLoad(this)
+                    return;
+                }
+                if (first.innerText=="Select a Time Period ▾"){
+                    frame = 0
+                    animateHighlight(select)
                     stopLoad(this)
                     return;
                 }
                 startLoad(this)
                 try {
-                    const response = await fetch("/api/v1/users/generate", {
+                    const response = await fetch("/APWST/generate", {
                         method: "POST",
                         headers: {"Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -126,7 +264,7 @@
                     if (response.ok) {
                         textBOX.innerText = data.result; 
                     } else {
-                        alert("Failed: " + data.message);
+                        alert("Failed:" + data.message);
                     }
 
                 } catch (error) {
@@ -137,15 +275,21 @@
 
             flashcard.addEventListener("click", async function (){  
                 let content = textBOX.innerText;
-                let selects = select.value;
-                if (!content || content == "Start typing note..." || select.value=="Select a Time Period"){
-                    alert("Please update text!");
+                let selects = first.innerText;
+                if (!content || content == "Start typing note..." ){
+                    alert("Please update text or add text!")
+                    stopLoad(this)
+                    return;
+                }
+                if (first.innerText=="Select a Time Period ▾"){
+                    frame = 0
+                    animateHighlight(select)
                     stopLoad(this)
                     return;
                 }
                 startLoad(this)
                 try {
-                    const response = await fetch("/api/v1/users/flashcard", {
+                    const response = await fetch("/APWST/flashcard", {
                         method: "POST",
                         headers: {"Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -167,15 +311,21 @@
             
             MCQ.addEventListener("click", async function (){  
                 let content = textBOX.innerText;
-                let selects = select.value;
-                if (!content || content == "Start typing note..." || select.value=="Select a Time Period"){
-                    alert("Please update text!");
+                let selects = first.innerText;
+                if (!content || content == "Start typing note..."){
+                    alert("Please update text or add text!");
+                    stopLoad(this)
+                    return;
+                }
+                if (first.innerText=="Select a Time Period ▾"){
+                    frame = 0
+                    animateHighlight(select)
                     stopLoad(this)
                     return;
                 }
                 startLoad(this)
                 try {
-                    const response = await fetch("/api/v1/users/question", {
+                    const response = await fetch("/APWST/question", {
                         method: "POST",
                         headers: {"Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -198,19 +348,21 @@
             saveButton.addEventListener("click", async function(){
                 let content = document.getElementById("textbox").innerText.trim();   
                 let usernameNotes = username.value; 
-                if (!content || !usernameNotes || select.value=="Select a Time Period") {
+                if (!content || !usernameNotes) {
                     alert("Please fill out the textbox!");
                     stopLoad(this)
                     return;
                 }
                 if ( content=="Start typing note..."){
-                    alert("Please update text!")
+                    alert("Please update the textbox!")
+                    let t = document.getElementById("textbox")
+                    //
                     stopLoad(this)
                     return;
                 }
                 startLoad(this)
                 try {
-                    const response = await fetch("/api/v1/users/notes", {
+                    const response = await fetch("/APWST/notes", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -235,7 +387,7 @@
                 let usernameNotes = username.value;
                 startLoad(this)
                 try{
-                    const response = await fetch(`/api/v1/users/notes?username=${usernameNotes}`, { 
+                    const response = await fetch(`/APWST/notes?username=${usernameNotes}`,{ 
                         method: "GET"
                     });
                     const data = await response.json(); 
@@ -246,12 +398,11 @@
                                 <p>${note.content.replace(/\n/g, "<br>")}</p>
                             `;                            
                         });
-                         alert("Notes uploaded")
                     }else {
                         alert("Failed to retrieve notes: " + data.message);
                     }
                 }catch (error) {
-                    alert("Internal issue");
+                    alert("Server error.");
                 }
                 stopLoad(this)
             });

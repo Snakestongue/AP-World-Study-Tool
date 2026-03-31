@@ -9,10 +9,9 @@ const login =  async(req, res) => {
             return res.status(400).json({message: "All fielda must be filled out"});
         }
         //exist
-        const existing = await User
-            .findOne({ username: username.toLowerCase() })
+        const existing =await User
+            .findOne({username: username.toLowerCase() })
             .select("+password");
-
         if (!existing){
                 return  res.status(404).json({
                     message: "Username not registered"
@@ -24,15 +23,13 @@ const login =  async(req, res) => {
                 message:"Incorrect password"
             })
         }  
-
         return res.status(200).json({
             message: "Logging back in!",
-            user: {
+            user:{
                 id: existing._id,
                 user: existing.username
             }
-        });
-        
+        });    
     }catch (error) {
         console.log("Register error", error)
         res.status(500).json({message:"Internal server error"})

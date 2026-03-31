@@ -11,7 +11,7 @@
                 <p class="special" id="headerSpecial">AP World Study Tool</p>
             </header>
             <nav>
-                <p class="special" id="navSpecial">AP World Study Tool</p>
+                <a class="special" id="navSpecial" href="../index.html">AP World Study Tool</a>
                 <!-- <a href="../index.html"><img id="navIMG" src="../image.png"></a> -->
                 <ul id="navList">
                     <li id="dropdownContainer">
@@ -36,7 +36,12 @@
                     <p>Don't have an account? <a href="signup.html" class="opposite">Sign up.</a></p>
                 </div>
             </main>
-          
+            <footer>
+                <ul id="footerList">
+                    <li><a id="github" href="https://github.com/Snakestongue">Github</a></li>
+                    <li id="footerDisable" disabled>&copy; 2026 APWST by Maeher. All rights reserved. V2</li>
+                </ul>
+            </footer>
         </div>
         <script src="scripting.js"></script>
         <script>
@@ -76,17 +81,16 @@
                     document.getElementById("oLogin").click();
                 }
             });
-
             oLogBut.addEventListener("click", async function() {
-                let username = document.getElementById("userName").value.trim();
-                let password = document.getElementById("passWord").value.trim();
+                let username =document.getElementById("userName").value.trim();
+                let password =document.getElementById("passWord").value.trim();
                 if (!username || !password) {
                     alert("Please fill out all fields!");
                     return;
                 }
                 startLoad(this)
                 try{
-                    const response = await fetch("/api/v1/users/login", { 
+                    const response = await fetch("/APWST/login", { 
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
