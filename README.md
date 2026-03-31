@@ -7,3 +7,6 @@ Summarize Notes: Turn long notes into short and comprehndible summaries.
 Create Flashcards: Automatically generate flashcards from your notes.
 
 Generate Sample MCQs: Make AP style multiple-choice questions for practice
+
+3/31
+- Changed from HuggingFace to Github & OpenAI
