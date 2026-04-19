@@ -60,8 +60,7 @@
                 </ul>
             </footer>
         <script src="scripting.js"></script>
-        <script>
-            
+        <script>   
             let textBOX = document.getElementById("textboxs");
             let view = document.getElementById("view");
             let username = document.getElementById("usernameNotes");
@@ -145,70 +144,44 @@
                     btn.spinner = null;
                 }
             }
-            function animateHighlight(element) {
+            function animateHighlight(element){
                 let frame = 0;
                 const totalFrames = 50; 
-
-                function step() {
-                    frame++;
+                function step(){
+                    frame+=1;
                     const progress = frame / totalFrames;
                     const intensity = Math.pow(1 - progress, 0.5); 
-
-                    // SHADOWY SETTINGS:
-                    // spread = 0 (prevents the 'bold/thick' border look)
-                    // blur = 8px (creates the soft, feathered shadow effect)
                     const blur = 8 * intensity; 
                     const alpha = intensity;
-
-                    // Apply a soft, glowing red shadow
                     element.style.boxShadow = `0 0 ${blur}px 0px rgba(255, 77, 77, ${alpha})`;
-                    
-                    // Soften the border color slightly so it blends with the shadow
-                    // but keep it thin (the 1px is defined in your CSS)
                     element.style.borderColor = `rgba(255, 77, 77, ${alpha})`;
-
-                    if (frame < totalFrames) {
+                    if(frame < totalFrames){
                         requestAnimationFrame(step);
-                    } else {
-                        // Reset to original CSS
+                    }else{
                         element.style.boxShadow = "none";
                         element.style.borderColor = "black";
                     }
                 }
-
                 requestAnimationFrame(step);
             }
-  
- 
             function boxHighlight(element) {
                 let frame = 0;
                 const totalFrames = 50; 
-
-                function step() {
-                    frame++;
+                function step(){
+                    frame+=1;
                     const progress = frame / totalFrames;
-                    
-                    // This math keeps alpha at 1.0 for the start, then fades.
-                    // It prevents that "pale" look.
                     let alpha = 1;
-                    if (progress > 0.2) {
-                        alpha = 1 - ((progress - 0.2) / 0.8);
+                    if(progress > 0.2) {
+                        alpha = 1 - ((progress - 0.2) / 0.8)
                     }
-                    
-                    // POP LOGIC: Starts at 2px, hits 12px, then fades
                     const spread = (2 + (12 * progress)) * alpha; 
                     const blur = 4 * progress; 
-
-                    // Apply Solid Red: rgba(255, 0, 0, alpha) is more vivid than (255, 77, 77)
-                    const redColor = `rgba(255, 0, 0, ${alpha})`;
-                    
+                    const redColor = `rgba(255, 0, 0, ${alpha})`
                     element.style.boxShadow = `0 0 ${blur}px ${spread}px ${redColor}`;
                     element.style.borderColor = redColor;
-
-                    if (frame < totalFrames) {
+                    if (frame < totalFrames){
                         requestAnimationFrame(step);
-                    } else {
-                        // Reset to original CSS
+                    }else{
                         element.style.boxShadow = "0 10px 25px -5px rgba(0, 0, 0, 0.05)";
                         element.style.borderColor = "#f1f5f9";
                     }

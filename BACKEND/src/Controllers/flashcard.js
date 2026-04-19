@@ -18,7 +18,7 @@ export const flashcardGenerator =async(req, res)=>{
         try{
             const response = await githubAI.chat.completions.create({
                 model:modelId,
-                    messages: [
+                    messages:[
                 {role: "system", content: "You are an AP World History Teacher and exam grader." },
                 {role: "user", content: `
                     Using these notes: ${content}

@@ -109,7 +109,7 @@
                 }
                 startLoad(this)
                 try{
-                    const response = await fetch("/api/v1/users/register", {
+                    const response = await fetch("/APWST/register", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
@@ -131,7 +131,7 @@
                         alert(wait.message);
                     }
                 }catch (error) {
-                    alert(wait.message);
+                    alert(error.message);
                 }
                 stopLoad(this)
             });
